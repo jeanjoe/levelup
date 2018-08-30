@@ -1,3 +1,44 @@
 body {
-  background: #999999;
+  background: #ecf0f1;
+  padding: 0;
+  margin: 0;
+}
+html {
+  font-size: 12px;
+}
+img {
+  max-width: 100%;
+}
+a {
+  text-decoration: none
+}
+nav {
+  display: flex;
+  flex-direction: row;
+  background: #1B9CFC;
+  padding: 5px 10px;
+}
+
+nav .title {
+  flex: 4;
+  color: #fff;
+}
+
+nav .title a {
+  color: #fff;
+}
+
+nav .nav-items {
+  margin: auto 0;
+}
+
+nav .nav-items a {
+  color: #fff;
+  font-weight: bold;
+  text-decoration: none;
+  padding: 5px;
+}
+nav .nav-items a:hover {
+  font-weight: bolder;
+  color: #3B3B98;
 }
