@@ -73,12 +73,19 @@ nav .nav-items a:hover {
   padding: 10px;
   color: #fff;
 }
+@media screen and (max-width: 992px) {
+  body {
+    background: #d1ccc0;
+  }
+}
 
-@media only screen and (max-width: 500px) {
+@media screen and (max-width: 600px) {
+  body {
+    background: #84817a;
+  }
   nav {
-    display: block;
-    padding-left: 0px;
-    margin: 0;
+    flex-direction: column;
+    padding: 0;
   }
   .form {
     width: 80%;
@@ -87,6 +94,7 @@ nav .nav-items a:hover {
   nav .nav-items a {
     display: block;
     border-bottom: 1px solid #fff;
+    box-sizing: border-box;
     width: 100%;
   }
 }
