@@ -42,3 +42,36 @@ nav .nav-items a:hover {
   font-weight: bolder;
   color: #3B3B98;
 }
+
+.form {
+  width: 45%;
+  margin: 0 auto;
+  padding: 20px 0;
+}
+
+.form h4 {
+  text-align: center;
+  color: #1B9CFC;
+}
+
+.field {
+  margin: 10px 5px;
+}
+
+.field input {
+  padding: 10px;
+  border: 1px solid #535c68;
+  display: block;
+  width: 100%;
+}
+
+.submit {
+  text-align: center;
+}
+
+.submit button {
+  border: none;
+  background: #1B9CFC;
+  padding: 10px;
+  color: #fff;
+}
