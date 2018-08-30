@@ -14,14 +14,12 @@ a {
 }
 nav {
   display: flex;
-  flex-direction: row;
   background: #1B9CFC;
   padding: 5px 10px;
 }
 
 nav .title {
-  flex: 4;
-  color: #fff;
+  flex: 1;
 }
 
 nav .title a {
@@ -74,4 +72,21 @@ nav .nav-items a:hover {
   background: #1B9CFC;
   padding: 10px;
   color: #fff;
+}
+
+@media only screen and (max-width: 500px) {
+  nav {
+    display: block;
+    padding-left: 0px;
+    margin: 0;
+  }
+  .form {
+    width: 80%;
+  }
+
+  nav .nav-items a {
+    display: block;
+    border-bottom: 1px solid #fff;
+    width: 100%;
+  }
 }
