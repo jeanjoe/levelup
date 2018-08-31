@@ -13,7 +13,7 @@ for line in ordinary_file:
 def registration_checker(name, data):
     full_name = None
     for fname in data:
-        if fname.find(name) != -1:
+        if fname.lower().find(name.lower()) != -1:
             full_name = fname
     
     return full_name
