@@ -1,5 +1,5 @@
-vip_file = open("files/vip_list.txt", "r")
-ordinary_file = open("files/ordinary_list.txt", "r")
+vip_file = open("./reception/vip_list.txt", "r")
+ordinary_file = open("./reception/ordinary_list.txt", "r")
 
 vip_names = []
 ordinary_names = []
@@ -23,7 +23,7 @@ while True:
 
     if registration_checker(input_name, vip_names) == None:
         if registration_checker(input_name, ordinary_names) == None:
-            print("No Name match")
+            print("Not Registered")
         else:
             print(registration_checker(input_name, ordinary_names))
     else:
