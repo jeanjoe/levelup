@@ -1,8 +1,6 @@
 vip_file = open("files/vip_list.txt", "r")
 ordinary_file = open("files/ordinary_list.txt", "r")
 
-input_name = input("Enter your name: \t")
-
 vip_names = []
 ordinary_names = []
 
@@ -20,11 +18,14 @@ def registration_checker(name, data):
     
     return full_name
 
-if registration_checker(input_name, vip_names) == None:
-    if registration_checker(input_name, ordinary_names) == None:
-        print("No Name match")
+while True:
+    input_name = input("Enter your name: \t")
+
+    if registration_checker(input_name, vip_names) == None:
+        if registration_checker(input_name, ordinary_names) == None:
+            print("No Name match")
+        else:
+            print(registration_checker(input_name, ordinary_names))
     else:
-        print(registration_checker(input_name, ordinary_names))
-else:
-    print(registration_checker(input_name, vip_names))
+        print(registration_checker(input_name, vip_names))
     
