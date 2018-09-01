@@ -19,7 +19,7 @@ def registration_checker(name, data):
     return full_name
 
 while True:
-    input_name = input("Enter your name: \t")
+    input_name = input("Enter your name: ")
 
     if registration_checker(input_name, vip_names) == None:
         if registration_checker(input_name, ordinary_names) == None:
