@@ -39,8 +39,8 @@ while True:
             print("Not Registered")
         else:
             #Visitor is Ordinary
-            print(registration_checker(input_name, ordinary_names))
+            print(registration_checker(input_name, ordinary_names) + "VIP - Visitor")
     else:
         #visitor is VIP
-        print(registration_checker(input_name, vip_names))
+        print(registration_checker(input_name, vip_names) + "VIP - Visitor")
     
