@@ -18,11 +18,15 @@ class TestBookTicket(unittest.TestCase):
             [ {"fullname": "Manzede Benard", "email": "manzede@gmail.com" }])
         self.assertEqual(len(bookTicket.tickets), 1)
 
-    def test_get_ticket(self):
+    def test_get_ticket_by_email(self):
         bookTicket = BookTicket()
         bookTicket.add_ticket("Manzede Benard", "manzede@gmail.com")
         self.assertEqual(bookTicket.get_ticket("manzede@gmail.com"), 
             {"fullname": "Manzede Benard", "email": "manzede@gmail.com" })
+
+    def test_ticket_not_found(self):
+        bookTicket = BookTicket()
+        self.assertIsNone(bookTicket.get_ticket("annonymous@gmail.com"))
 
     def test_remove_ticket(self):
         bookTicket = BookTicket()
