@@ -13,4 +13,9 @@ class BookTicket():
         }
         self.tickets.append(visitor)
         return self.tickets
+
+    def get_ticket(self, email):
+        for visitor in self.tickets:
+            if visitor['email'] == email:
+                return visitor
         
