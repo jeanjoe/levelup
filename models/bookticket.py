@@ -19,3 +19,7 @@ class BookTicket():
             if visitor['email'] == email:
                 return visitor
         
+    def remove_ticket(self, email):
+        for visitor in self.tickets:
+            if visitor['email'] == email:
+                self.tickets.remove(visitor) 

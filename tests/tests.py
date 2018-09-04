@@ -24,4 +24,9 @@ class TestBookTicket(unittest.TestCase):
         self.assertEqual(bookTicket.get_ticket("manzede@gmail.com"), 
             {"fullname": "Manzede Benard", "email": "manzede@gmail.com" })
 
+    def test_remove_ticket(self):
+        bookTicket = BookTicket()
+        bookTicket.book_ticket("Manzede Benard", "manzede@gmail.com")
+        bookTicket.remove_ticket("manzede@gmail.com")
+        self.assertEqual(len(bookTicket.tickets), 0)
 
