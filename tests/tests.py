@@ -3,34 +3,33 @@ from models.bookticket import BookTicket
 
 class TestBookTicket(unittest.TestCase):
 
+    def setUp(self):
+        self.bookTicket = BookTicket()
+        self.bookTicket.add_ticket("Manzede Benard", "manzede@gmail.com")
+
     def test_book_ticket_class(self):
-        bookticket = BookTicket()
-        self.assertIsInstance(bookticket, BookTicket)
+        self.assertIsInstance(self.bookTicket, BookTicket)
 
     def test_instance_of_tickets_to_be_list(self):
-        bookTicket = BookTicket()
-        self.assertIsInstance(bookTicket.tickets, list)
+        self.assertIsInstance(self.bookTicket.tickets, list)
 
     def test_book_ticket(self):
-        bookTicket = BookTicket()
-        
-        self.assertEqual(bookTicket.add_ticket("Manzede Benard", "manzede@gmail.com"), 
-            [ {"fullname": "Manzede Benard", "email": "manzede@gmail.com" }])
-        self.assertEqual(len(bookTicket.tickets), 1)
+        self.assertEqual(self.bookTicket.add_ticket("jean", "jean@gmail.com"), 
+            [ {'email': 'manzede@gmail.com', 'fullname': 'Manzede Benard'}, 
+            {"fullname": "jean", "email": "jean@gmail.com" }])
+        self.assertEqual(len(self.bookTicket.tickets), 2)
 
     def test_get_ticket_by_email(self):
-        bookTicket = BookTicket()
-        bookTicket.add_ticket("Manzede Benard", "manzede@gmail.com")
-        self.assertEqual(bookTicket.get_ticket("manzede@gmail.com"), 
+        self.assertEqual(self.bookTicket.get_ticket("manzede@gmail.com"), 
             {"fullname": "Manzede Benard", "email": "manzede@gmail.com" })
 
     def test_ticket_not_found(self):
-        bookTicket = BookTicket()
-        self.assertIsNone(bookTicket.get_ticket("annonymous@gmail.com"))
+        self.assertIsNone(self.bookTicket.get_ticket("annonymous@gmail.com"))
 
     def test_remove_ticket(self):
-        bookTicket = BookTicket()
-        bookTicket.add_ticket("Manzede Benard", "manzede@gmail.com")
-        bookTicket.remove_ticket("manzede@gmail.com")
-        self.assertEqual(len(bookTicket.tickets), 0)
+        self.bookTicket.remove_ticket("manzede@gmail.com")
+        self.assertEqual(len(self.bookTicket.tickets), 0)
+
+    def tearDown(self):
+        self.bookTicket.tickets = []
 
