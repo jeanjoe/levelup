@@ -6,7 +6,7 @@ class BookTicket():
         self.tickets = []
 
     """ Function to book ticket"""
-    def book_ticket(self, name, email):
+    def add_ticket(self, name, email):
         visitor = {
             "fullname": name,
             "email": email
