@@ -1,37 +1,24 @@
 
 #Search name from list and return fullname
 def registration_checker(name, data):
-
-    #Default fullname is None if no Match
-    full_name = None
-
     #Search name and return fullname else do nothing
     for fname in data:
         if fname.lower().find(name.lower()) != -1:
-            full_name = fname.rstrip("\n")
-    
+            return fname.rstrip("\n")
     #return fullname variable
-    return full_name
-
+    return None
 
 if __name__ == "__main__":
     #Read files
     vip_file = open("./reception/vip_list.txt", "r")
     ordinary_file = open("./reception/ordinary_list.txt", "r")
 
-    vip_names = []
-    ordinary_names = []
-
-    #Store names to Lists
-    for line in vip_file:
-        vip_names.append(line)
-
-    for line in ordinary_file:
-        ordinary_names.append(line)
+    #Store names to Lists List comprehension
+    vip_names = [line for line in vip_file]
+    ordinary_names = [line for line in ordinary_file]
 
     #make app run continiously
     while True:
-
         #Prompt for user single name
         input_name = input("Enter your name: ")
 
@@ -50,4 +37,3 @@ if __name__ == "__main__":
         else:
             #visitor is VIP
             print(vip_checker + " - VIP")
-        
