@@ -110,6 +110,7 @@ nav .nav-items a:hover {
     display: block;
     border-bottom: 1px solid #fff;
     box-sizing: border-box;
+    text-align: center;
     width: 100%;
   }
 }
