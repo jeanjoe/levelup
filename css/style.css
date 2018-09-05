@@ -44,7 +44,7 @@ nav .nav-items a:hover {
 .container {
   display: flex;
   justify-content: space-between;
-  margin: 0 10px;
+  margin: 0 0px;
 }
 .image {
   flex: 2;
@@ -52,8 +52,7 @@ nav .nav-items a:hover {
 
 .form {
   flex: 2;
-  margin: 0 auto;
-  padding: 20px 0;
+  margin: auto;
 }
 
 .form h4 {
@@ -62,25 +61,27 @@ nav .nav-items a:hover {
 }
 
 .field {
-  margin: 10px 5px;
+  text-align: center;
+  margin: 10px 0;
+}
+
+.field span {
+  font-weight: bolder;
 }
 
 .field input {
-  padding: 10px;
+  padding: 8px;
   border: 1px solid #535c68;
   box-sizing: border-box;
-  display: block;
-  width: 100%;
+  width: 200px;
 }
-
 .submit {
-  text-align: center;
+  text-align: center
 }
-
 .submit button {
   border: none;
   background: #1B9CFC;
-  padding: 10px;
+  padding: 8px;
   color: #fff;
 }
 @media screen and (max-width: 992px) {
