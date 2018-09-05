@@ -32,6 +32,11 @@ class TestBookTicket(unittest.TestCase):
         self.assertEqual(self.bookTicket.get_ticket("manzede@gmail.com"), 
             {"fullname": "Manzede Benard", "email": "manzede@gmail.com" })
 
+    #Test get ticket by email
+    def test_get_ticket_by_name(self):
+        self.assertEqual(self.bookTicket.get_ticket_by_name("Manzede Benard"), 
+            {"fullname": "Manzede Benard", "email": "manzede@gmail.com" })
+
     #Test ticket not found
     def test_ticket_not_found(self):
         self.assertIsNone(self.bookTicket.get_ticket("annonymous@gmail.com"))
