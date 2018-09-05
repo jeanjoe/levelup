@@ -73,6 +73,7 @@ nav .nav-items a:hover {
   padding: 8px;
   border: 1px solid #535c68;
   box-sizing: border-box;
+  width: 200px;
 }
 .submit {
   text-align: center
