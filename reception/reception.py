@@ -21,7 +21,7 @@ def registration_checker(name, data):
     #Search name and return fullname else do nothing
     for fname in data:
         if fname.lower().find(name.lower()) != -1:
-            full_name = fname
+            full_name = fname.rstrip("\n")
     
     #return fullname variable
     return full_name
@@ -39,8 +39,8 @@ while True:
             print("Not Registered")
         else:
             #Visitor is Ordinary
-            print(registration_checker(input_name, ordinary_names) + " ORDINARY - Visitor")
+            print(registration_checker(input_name, ordinary_names) + " - ORDINARY")
     else:
         #visitor is VIP
-        print(registration_checker(input_name, vip_names) + " VIP - Visitor")
+        print(registration_checker(input_name, vip_names) + " - VIP")
     
