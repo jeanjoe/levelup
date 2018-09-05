@@ -16,6 +16,10 @@ class TestBookTicket(unittest.TestCase):
     def test_instance_of_tickets_to_be_list(self):
         self.assertIsInstance(self.bookTicket.tickets, list)
 
+    #Test length of tickets
+    def test_length_of_tickets(self):
+        self.assertEqual(len(self.bookTicket.tickets), 1)
+
     #Test add Ticket to the list
     def test_add_ticket(self):
         self.assertEqual(self.bookTicket.add_ticket("jean", "jean@gmail.com"), 
@@ -37,7 +41,10 @@ class TestBookTicket(unittest.TestCase):
         self.bookTicket.remove_ticket("manzede@gmail.com")
         self.assertEqual(len(self.bookTicket.tickets), 0)
 
+    #Test remove ticket not found
+    def test_remove_ticket_not_found(self):
+        self.assertIsNone(self.bookTicket.remove_ticket("annonymous@gmail.com"))
+
     #Empty the ticket list
     def tearDown(self):
         self.bookTicket.tickets = []
-

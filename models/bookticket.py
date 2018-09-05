@@ -24,3 +24,5 @@ class BookTicket():
         for visitor in self.tickets:
             if visitor['email'] == email:
                 self.tickets.remove(visitor) 
+
+        return None
