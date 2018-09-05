@@ -1,11 +1,9 @@
-
-#Search name from list and return fullname
+#Function to Search name from list and return result
 def registration_checker(name, data):
-    #Search name and return fullname else do nothing
+    #Search name and return fullname else return None
     for fname in data:
         if fname.lower().find(name.lower()) != -1:
-            return fname.rstrip("\n")
-    #return fullname variable
+            return fname.rstrip("\n")       
     return None
 
 if __name__ == "__main__":
@@ -13,7 +11,7 @@ if __name__ == "__main__":
     vip_file = open("./reception/vip_list.txt", "r")
     ordinary_file = open("./reception/ordinary_list.txt", "r")
 
-    #Store names to Lists List comprehension
+    #Store names to Lists using List comprehension
     vip_names = [line for line in vip_file]
     ordinary_names = [line for line in ordinary_file]
 
