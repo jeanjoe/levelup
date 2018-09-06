@@ -1,2 +1,4 @@
 env/*
 .vscode/*
+tests/__pycache__/*
+models/__pycache__/*
