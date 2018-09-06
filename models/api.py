@@ -5,6 +5,7 @@ class User:
         self.users_list = users_list
 
     def add_user(self, name, email, password):
+        """Search user and add if not exists."""
         if self.search_user(name):
             return False
         user = {
@@ -16,9 +17,11 @@ class User:
         return user
 
     def get_all_users(self):
+        """Return a list of All users."""
         return self.users_list
 
     def delete_user(self,name):
+        """Search user if exists remove from list."""
         search_result = self.search_user(name)
         if search_result:
             self.users_list.remove(search_result[0])
@@ -26,6 +29,7 @@ class User:
         return None
 
     def search_user(self, name):
+        """Search user from list using name."""
         user = [user for user in self.users_list if user['name'] == name]
         if user:
             return user

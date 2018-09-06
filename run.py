@@ -18,15 +18,15 @@ def add_user():
     password = data['password']
     save_user = user.add_user(name, email, password)
     if save_user == False:
-        return jsonify({ "message": "This user already exists" })
+        return jsonify({ "message": "This user already exists" }), 200
     return jsonify({"user": save_user, "message": "User added successfuly"}), 201
 
 @app.route('/delete-user/<user_name>', methods=['DELETE'])
 def delete_user(user_name):
     """Delete users using name."""
     if user.delete_user(user_name):
-        return jsonify({"message": "User Deleted Successfuly", "users": user.get_all_users() })
-    return jsonify({ "message": "Cannot find user with username '{}'".format(user_name) }), 200
+        return jsonify({"message": "User Deleted Successfuly"}), 400
+    return jsonify({ "message": "Cannot find user with username '{}'".format(user_name) }), 400
 
 
 if __name__ == "__main__":
