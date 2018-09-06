@@ -1,8 +1,8 @@
 from flask import Flask, jsonify, request, json
-from models.api import User
+from models.api import GuestList
 
 app = Flask(__name__)
-user = User()
+user = GuestList()
 
 @app.route('/get-users', methods=['GET'])
 def get_users():

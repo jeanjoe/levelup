@@ -1,5 +1,28 @@
 
-class User:
+class Person(object):
+
+    def __init__(self, name, email):
+        self.name = name
+        self.email = email
+
+    def details(self):
+        return self.name
+
+class User(Person):
+
+    def __init__(self, name, email, password):
+        super().__init__(name, email)
+        self.password = password
+
+    def user_details(self):
+        data = {
+            "name": self.name,
+            "email": self.email,
+            "password":self.password
+        }
+        return data
+
+class GuestList():
 
     def __init__(self, users_list = []):
         self.users_list = users_list
@@ -8,11 +31,7 @@ class User:
         """Search user and add if not exists."""
         if self.search_user(name):
             return False
-        user = {
-            "name": name,
-            "email": email,
-            "password": password
-        }
+        user = User(name, email, password).user_details()
         self.users_list.append(user)
         return user
 
