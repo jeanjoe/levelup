@@ -13,13 +13,16 @@ def get_users():
 def add_user():
     """Add User to users_list."""
     data = request.get_json()
-    name = data['name']
-    email = data['email']
-    password = data['password']
-    save_user = user.add_user(name, email, password)
-    if save_user == False:
-        return jsonify({ "message": "This user already exists" }), 200
-    return jsonify({"user": save_user, "message": "User added successfuly"}), 201
+    try:
+        name = data['name']
+        email = data['email']
+        password = data['password']
+        save_user = user.add_user(name, email, password)
+        if save_user == False:
+            return jsonify({ "message": "This user already exists" }), 200
+        return jsonify({"user": save_user, "message": "User added successfuly"}), 201
+    except Exception as ex:
+        return jsonify({ "error": "Field {} is required.".format(ex)})
 
 @app.route('/delete-user/<user_name>', methods=['DELETE'])
 def delete_user(user_name):
@@ -27,7 +30,6 @@ def delete_user(user_name):
     if user.delete_user(user_name):
         return jsonify({"message": "User Deleted Successfuly"}), 400
     return jsonify({ "message": "Cannot find user with username '{}'".format(user_name) }), 400
-
 
 if __name__ == "__main__":
     app.run(debug=True)
