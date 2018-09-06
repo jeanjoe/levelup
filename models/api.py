@@ -1,23 +1,12 @@
 
 class User:
 
-    users_list = [
-        {
-            "username": "Manzede Benard",
-            "email": "manzede@gmail.com",
-            "password": "12345"
-        },
-        {
-            "username": "Kyakulumbye Ahmad",
-            "email": "kyakulumbye@gmail.com",
-            "password": "555555"
-        }
-    ]
-
-    def __init__(self):
-        pass
+    def __init__(self, users_list = []):
+        self.users_list = users_list
 
     def add_user(self, name, email, password):
+        if self.search_user(name):
+            return False
         user = {
             "name": name,
             "email": email,
@@ -37,7 +26,7 @@ class User:
         return None
 
     def search_user(self, name):
-        user = [user for user in self.users_list if user['username'] == name]
+        user = [user for user in self.users_list if user['name'] == name]
         if user:
             return user
         return None
