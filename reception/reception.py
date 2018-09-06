@@ -1,46 +1,37 @@
-#Read files
-vip_file = open("./reception/vip_list.txt", "r")
-ordinary_file = open("./reception/ordinary_list.txt", "r")
-
-vip_names = []
-ordinary_names = []
-
-#Store names to Lists
-for line in vip_file:
-    vip_names.append(line)
-
-for line in ordinary_file:
-    ordinary_names.append(line)
-
-#Search name from list and return fullname
+#Function to Search name from list and return result
 def registration_checker(name, data):
-
-    #Default fullname is None if no Match
-    full_name = None
-
-    #Search name and return fullname else do nothing
+    #Search name and return fullname else return None
     for fname in data:
         if fname.lower().find(name.lower()) != -1:
-            full_name = fname
-    
-    #return fullname variable
-    return full_name
+            return fname.rstrip("\n")       
+    return None
 
-#make app run continiously
-while True:
+if __name__ == "__main__":
+    #Read files
+    vip_file = open("./reception/vip_list.txt", "r")
+    ordinary_file = open("./reception/ordinary_list.txt", "r")
 
-    #Prompt for user single name
-    input_name = input("Enter your name: ")
+    #Store names to Lists using List comprehension
+    vip_names = [line for line in vip_file]
+    ordinary_names = [line for line in ordinary_file]
 
-    #search name in VIP if no match search in Oridary 
-    if registration_checker(input_name, vip_names) == None:
-        if registration_checker(input_name, ordinary_names) == None:
-            #If no Match visitor is not registered
-            print("Not Registered")
+    #make app run continiously
+    while True:
+        #Prompt for user single name
+        input_name = input("Enter your name: ")
+
+        #search name in VIP if no match search in Oridary 
+        vip_checker = registration_checker(input_name, vip_names)
+        if  vip_checker == None:
+
+            #Search in Ordinary
+            ordinary_checker = registration_checker(input_name, ordinary_names)
+            if ordinary_checker == None:
+                #If no Match visitor is not registered
+                print("Not Registered")
+            else:
+                #Visitor is Ordinary
+                print(ordinary_checker + " - ORDINARY")
         else:
-            #Visitor is Ordinary
-            print(registration_checker(input_name, ordinary_names) + " ORDINARY - Visitor")
-    else:
-        #visitor is VIP
-        print(registration_checker(input_name, vip_names) + " VIP - Visitor")
-    
+            #visitor is VIP
+            print(vip_checker + " - VIP")
