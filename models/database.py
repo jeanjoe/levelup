@@ -29,3 +29,15 @@ class DatabaseConnection:
             return "New User created succesffuly"
         except Exception as ex:
             return "Error occured {}".format(ex)
+
+    def add_new_event(self, name, price, location):
+        """Insert New Event to the database."""
+        try:
+            query = """
+            INSERT INTO events (name, price, location, created_at) VALUES 
+            ('{}', '{}', '{}', '{}')
+            """.format(name, price, location, datetime.datetime.now())
+            self.cursor.execute(query)
+            return "New Event created succesffuly"
+        except Exception as ex:
+            return "Error occured {}".format(ex)
