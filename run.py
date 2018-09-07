@@ -21,12 +21,12 @@ def add_user():
     except Exception as ex:
         return jsonify({ "error": "Field {} is required.".format(ex)}), 200
 
-@app.route('/delete-user/<user_name>', methods=['DELETE'])
-def delete_user(user_name):
+@app.route('/delete-user/<user_id>', methods=['DELETE'])
+def delete_user(user_id):
     """Delete users using name."""
-    if user.delete_user(user_name):
+    if user.delete_user(user_id):
         return jsonify({"message": "User Deleted Successfuly"}), 200
-    return jsonify({ "message": "Cannot find user with username '{}'".format(user_name) }), 400
+    return jsonify({ "message": "Cannot find user with ID '{}'".format(user_id) }), 400
 
 if __name__ == "__main__":
     app.run(debug=True)

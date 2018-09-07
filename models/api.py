@@ -1,3 +1,4 @@
+import uuid
 
 class Person(object):
 
@@ -20,6 +21,7 @@ class User(Person):
 
     def details(self):
         data = {
+            "id": str(uuid.uuid1()),
             "name": self.name,
             "email": self.email,
             "password":self.password
@@ -43,12 +45,12 @@ class GuestList():
         """Return a list of All users."""
         return self.users_list
 
-    def delete_user(self,name):
+    def delete_user(self,user_id):
         """Search user if exists remove from list."""
-        search_result = self.search_user(name)
-        if search_result:
-            self.users_list.remove(search_result[0])
-            return search_result
+        get_user = [user for user in self.users_list if user['id'] == user_id]
+        if get_user:
+            self.users_list.remove(get_user[0])
+            return get_user
         return None
 
     def search_user(self, name):
