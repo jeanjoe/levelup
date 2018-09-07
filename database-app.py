@@ -43,9 +43,11 @@ if __name__ == "__main__":
         elif selector == "4":
             users = database.get_all_users()
             print("All Registered Users.")
-            print("ID \tName \t\tAge \tEmail \t\tPassword \tCreated_at")
+            print("--------------------------------------------------------------------------------------")
+            print("ID \t|Firstame \t|Lastname \t\t|Age \t|Email \t\t|Password \t|Created_at")
+            print("--------------------------------------------------------------------------------------")
             for row in users:
-                print("{} \t{} {} \t{} \t{} \t\t{} \t{}".format(row[0], row[1], row[2], row[3], row[4], row[5], row[6]))
+                print("{} \t|{} \t|{} \t|{} \t|{} \t\t|{} \t|{}".format(row[0], row[1], row[2], row[3], row[4], row[5], row[6]))
 
         elif selector == "3":
             """Assign event ticket to user."""
@@ -86,7 +88,17 @@ if __name__ == "__main__":
                 print("{} \t|{} \t\t|{} \t|{} \t|{} \t{}".format(row[0], row[1], row[2], row[3], row[4], row[5]))
 
         elif selector == "7":
-            pass
+            #Get user id and check if it exists
+            user_id = input("Enter user ID: ")
+            check_user = database.search_data("users", "id", user_id)
+            if check_user:
+                print("User Details.")
+                print("--------------------------------------------------------------------------------------")
+                print("ID \t|Firstname \t|Lasname \t|Age \t|Password \t|Email \t|Created_at")
+                print("--------------------------------------------------------------------------------------")
+                print("{} \t|{} \t{} \t\t|{} \t|{} \t{}".format(check_user[0], check_user[1], check_user[2], check_user[3], check_user[5], check_user[4]))
+            else:
+                print("User Not Found")
 
         elif selector == "8":
             pass
