@@ -1,5 +1,34 @@
+import uuid
 
-class User:
+class Person(object):
+
+    def __init__(self, name, email):
+        self.name = name
+        self.email = email
+
+    def details(self):
+        data = {
+            "name": self.name,
+            "email": self.email
+        }
+        return data
+
+class User(Person):
+
+    def __init__(self, name, email, password):
+        super().__init__(name, email)
+        self.password = password
+
+    def details(self):
+        data = {
+            "id": str(uuid.uuid1()),
+            "name": self.name,
+            "email": self.email,
+            "password":self.password
+        }
+        return data
+
+class GuestList():
 
     def __init__(self, users_list = []):
         self.users_list = users_list
@@ -8,11 +37,7 @@ class User:
         """Search user and add if not exists."""
         if self.search_user(name):
             return False
-        user = {
-            "name": name,
-            "email": email,
-            "password": password
-        }
+        user = User(name, email, password).details()
         self.users_list.append(user)
         return user
 
@@ -20,12 +45,12 @@ class User:
         """Return a list of All users."""
         return self.users_list
 
-    def delete_user(self,name):
+    def delete_user(self,user_id):
         """Search user if exists remove from list."""
-        search_result = self.search_user(name)
-        if search_result:
-            self.users_list.remove(search_result[0])
-            return search_result
+        get_user = [user for user in self.users_list if user['id'] == user_id]
+        if get_user:
+            self.users_list.remove(get_user[0])
+            return get_user
         return None
 
     def search_user(self, name):
