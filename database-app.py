@@ -18,6 +18,9 @@ if __name__ == "__main__":
         print("[7] - Get a User")
         print("[8] - Get an Event")
         print("[9] - Get a Ticket")
+        print("[10] - Update User")
+        print("[11] - Update EVent")
+        print("[12] - Update Ticket")
         print("[0] - Exit")
 
         selector = input(":")
@@ -140,6 +143,64 @@ if __name__ == "__main__":
             """Break the loop."""
             print("You Exited!")
             break
+
+        elif selector == "10":
+            """Update User Detail."""
+            user_id = input("Enter user ID")
+
+            check_user = database.search_data("users", "id", user_id)
+            if check_user:
+                print("Update {} Details ".format(check_user[1]))
+                first_name = input("Enter your first name: ")
+                last_name = input("Enter your last name: ")
+                email = input("Enter a valid Email address: ")
+                age = input("Enter your age: ")
+                password = input("Enter your password: ")
+
+                print(database.update_user(user_id, first_name, last_name, email, age, password))
+
+            else:
+                print("Cannot find User with ID '{}'.".format(user_id))
+
+        elif selector == "11":
+            """Update Events details."""
+            event_id = input("Enter Event ID")
+
+            check_event = database.search_data("events", "id", event_id)
+
+            if check_event:
+                print("Update Event {} details".format(check_event[1]))
+                event_name = input("Enter Event name: ")
+                event_price = input("Enter Event price: ")
+                event_location = input("Enter Event location: ")
+
+                print(database.update_event(event_id, event_name, event_price, event_location))
+            else:
+                print("Unable to find Event with this ID '{}' ".format(event_id))
+
+        elif selector == "12":
+            """Update Tickets details."""
+            ticket_id = input("Enter Ticket ID")
+            check_ticket = database.search_data("tickets", "id", ticket_id)
+
+            if check_ticket:
+                print("Update Ticket Details for User {} Event {} ".format(check_ticket[1], check_ticket[2]))
+                user_id = input("Enter user ID: ")
+                check_user = database.search_data("users", "id", user_id)
+                if check_user:
+                    
+                    #Get event id and check if it exists
+                    event_id = input("Enter Event ID: ")
+                    check_event = database.search_data("events", "id", event_id)
+                    if check_event:
+                        verification_code = input("Enter 5 Digit verification code: ")
+                        print(database.update_ticket(ticket_id, user_id, event_id, verification_code))
+                    else:
+                        print("Event Not Found")
+                else:
+                    print("User Not Found")
+            else:
+                print("Unable to find ticket with ID {} ")
 
         else:
             print("\nPlease Select a valid MENU ID.")

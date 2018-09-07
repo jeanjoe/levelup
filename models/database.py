@@ -80,6 +80,36 @@ class DatabaseConnection:
         except Exception as ex:
             return "Error occured {}".format(ex)
 
+    def update_user(self, user_id, first_name, last_name, email, age, password ):
+        try:
+            query = """
+            UPDATE users SET first_name='{}', last_name='{}', email='{}', age='{}', password='{}' WHERE id = {}
+            """.format(first_name, last_name, email, age, password, user_id)
+            self.cursor.execute(query)
+            return "User details updated successfuly"
+        except Exception as ex:
+            return "Unable to update User details - {} ".format(ex)
+
+    def update_event(self, event_id, name, price, location):
+        try:
+            query = """
+            UPDATE events SET name='{}', price='{}', location='{}' WHERE id = {}
+            """.format(name, price, location, event_id)
+            self.cursor.execute(query)
+            return "Event detail updated successfuly"       
+        except Exception as ex:
+            return "Unable to update Event details - {} ".format(ex)
+
+    def update_ticket(self, ticket_id, user_id, event_id, verification_code):
+        try:
+            query = """
+            UPDATE tickets SET user_id='{}', event_id='{}', verification_code='{}' WHERE id = {}
+            """.format(user_id, event_id, verification_code, ticket_id)
+            self.cursor.execute(query)
+            return "Event details updated successfuly"       
+        except Exception as ex:
+            return "Unable to update Ticket details - {} ".format(ex)
+
     def add_new_ticket(self, user_id, event_id, verification_code):
         """Assign event ticket to user."""
         try:
