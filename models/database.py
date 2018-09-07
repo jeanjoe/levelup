@@ -20,6 +20,7 @@ class DatabaseConnection:
             print(ex)
 
     def add_new_user(self, first_name, last_name, email, age, password):
+        """Add new user to Database."""
         try:
             query = """
             INSERT INTO users (first_name, last_name, age, email, password, created_at) VALUES 
@@ -29,6 +30,14 @@ class DatabaseConnection:
             return "New User created succesffuly"
         except Exception as ex:
             return "Error occured {}".format(ex)
+
+    def get_all_users(self):
+        """Get all users from database."""
+        query = """
+        SELECT * FROM users
+        """
+        self.cursor.execute(query)
+        return self.cursor.fetchall()
 
     def add_new_event(self, name, price, location):
         """Insert New Event to the database."""
