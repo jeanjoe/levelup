@@ -17,7 +17,7 @@ if __name__ == "__main__":
         print("[6] - Get all Tickets")
         print("[7] - Get a User")
         print("[8] - Get an Event")
-        print("[9] - Update Ticket")
+        print("[9] - Get a Ticket")
         print("[0] - Exit")
 
         selector = input(":")
@@ -42,12 +42,15 @@ if __name__ == "__main__":
 
         elif selector == "4":
             users = database.get_all_users()
-            print("All Registered Users.")
-            print("--------------------------------------------------------------------------------------")
-            print("ID \t|Firstame \t|Lastname \t\t|Age \t|Email \t\t|Password \t|Created_at")
-            print("--------------------------------------------------------------------------------------")
-            for row in users:
-                print("{} \t|{} \t|{} \t|{} \t|{} \t\t|{} \t|{}".format(row[0], row[1], row[2], row[3], row[4], row[5], row[6]))
+            if users:
+                print("All Registered Users.")
+                print("--------------------------------------------------------------------------------------")
+                print("ID \t|Firstame \t|Lastname \t\t|Age \t|Email \t\t|Password \t|Created_at")
+                print("--------------------------------------------------------------------------------------")
+                for row in users:
+                    print("{} \t|{} \t|{} \t|{} \t|{} \t\t|{} \t|{}".format(row[0], row[1], row[2], row[3], row[4], row[5], row[6]))
+            else:
+                print("No users have been registered")
 
         elif selector == "3":
             """Assign event ticket to user."""
@@ -68,27 +71,33 @@ if __name__ == "__main__":
                 print("User Not Found")
 
         elif selector == "5":
-            """Get all tickets."""
+            """Get all Events."""
             events = database.get_all_events()
-            print("All Registered Users.")
-            print("--------------------------------------------------------------------------------------")
-            print("ID \t|Name \t\t|Price \t|Location \t|Created at")
-            print("--------------------------------------------------------------------------------------")
-            for row in events:
-                print("{} \t|{} \t\t|{} \t|{} \t|{}".format(row[0], row[1], row[2], row[3], row[4]))
+            if events:
+                print("All Events.")
+                print("--------------------------------------------------------------------------------------")
+                print("ID \t|Name \t\t|Price \t|Location \t|Created at")
+                print("--------------------------------------------------------------------------------------")
+                for row in events:
+                    print("{} \t|{} \t\t|{} \t|{} \t|{}".format(row[0], row[1], row[2], row[3], row[4]))
+            else:
+                print("No Events have been created")
 
         elif selector == "6":
             """Get all tickets."""
             tickets = database.get_all_tickets()
-            print("All Registered Users.")
-            print("--------------------------------------------------------------------------------------")
-            print("ID \t|USER \t\t|EVENT \t|VALID \t|CODE \t|CREATED AT")
-            print("--------------------------------------------------------------------------------------")
-            for row in tickets:
-                print("{} \t|{} \t\t|{} \t|{} \t|{} \t{}".format(row[0], row[1], row[2], row[3], row[4], row[5]))
+            if tickets:
+                print("Event Tickets.")
+                print("--------------------------------------------------------------------------------------")
+                print("ID \t|USER \t\t|EVENT \t|VALID \t|CODE \t|CREATED AT")
+                print("--------------------------------------------------------------------------------------")
+                for row in tickets:
+                    print("{} \t|{} \t\t|{} \t|{} \t|{} \t{}".format(row[0], row[1], row[2], row[3], row[4], row[5]))
+            else:
+                print("No event tickets assigned users.")
 
         elif selector == "7":
-            #Get user id and check if it exists
+            """Get a user."""
             user_id = input("Enter user ID: ")
             check_user = database.search_data("users", "id", user_id)
             if check_user:
@@ -101,10 +110,31 @@ if __name__ == "__main__":
                 print("User Not Found")
 
         elif selector == "8":
-            pass
+            """Get an Event."""
+            event_id = input("Enter event ID: ")
+            check_event = database.search_data("events", "id", event_id)
+            if check_event:
+                print("Event Details.")
+                print("--------------------------------------------------------------------------------------")
+                print("ID \t|Name \t\t|Price \t|Location \t|Created at")
+                print("--------------------------------------------------------------------------------------")
+                print("{} \t|{} \t\t|{} \t|{} \t|{}".format(check_event[0], check_event[1], check_event[2], check_event[3], check_event[4]))
+            else:
+                print("Event Not Found")
 
         elif selector == "9":
-            pass
+            """Get a Ticket."""
+            print("Get a Ticket.")
+            ticket_id = input("Enter Ticket ID: ")
+            check_ticket = database.search_data("tickets", "id", ticket_id)
+            if check_ticket:
+                print("Ticket Details.")
+                print("--------------------------------------------------------------------------------------")
+                print("ID \t|USER \t\t|EVENT \t|VALID \t|CODE \t|CREATED AT")
+                print("--------------------------------------------------------------------------------------")
+                print("{} \t|{} \t\t|{} \t|{} \t|{} \t|{}".format(check_ticket[0], check_ticket[1], check_ticket[2], check_ticket[3], check_ticket[4], check_ticket[5]))
+            else:
+                print("Ticket Not Found")
 
         elif selector == "0":
             """Break the loop."""
