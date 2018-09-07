@@ -50,3 +50,26 @@ class DatabaseConnection:
             return "New Event created succesffuly"
         except Exception as ex:
             return "Error occured {}".format(ex)
+
+    def search_data(self, table, field, data):
+        """Search data from the provided table."""
+        try:
+            query =  """
+            SELECT * FROM {} WHERE {}='{}'
+            """.format(table, field, data)
+            self.cursor.execute(query)
+            return self.cursor.fetchone()   
+        except Exception as ex:
+            return "Error occured {}".format(ex)
+
+    def add_new_ticket(self, user_id, event_id, verification_code):
+        """Assign event ticket to user."""
+        try:
+            query = """
+            INSERT INTO tickets (user_id, event_id, is_valid, verification_code, created_at) VALUES 
+            ('{}', '{}', '{}', '{}', '{}')
+            """.format(user_id, event_id, 1, verification_code, datetime.datetime.now())
+            self.cursor.execute(query)
+            return "New Event ticket assigned to user succesffuly"
+        except Exception as ex:
+            return "Error occured {}".format(ex)

@@ -42,10 +42,28 @@ while True:
         for row in users:
             print("{} \t{} {} \t{} \t{} \t\t{} \t{}".format(row[0], row[1], row[2], row[3], row[4], row[5], row[6]))
 
+    elif selector == "3":
+        """Assign event ticket to user."""
+        #Get user id and check if it exists
+        user_id = input("Enter user ID: ")
+        check_user = database.search_data("users", "id", user_id)
+        if check_user:
+            
+            #Get event id and check if it exists
+            event_id = input("Enter Event ID: ")
+            check_event = database.search_data("events", "id", event_id)
+            if check_event:
+                verification_code = input("Enter 5 Digit verification code: ")
+                print(database.add_new_ticket(user_id, event_id, verification_code))
+            else:
+                print("Event Not Found")
+        else:
+            print("User Not Found")
+
     elif selector == "0":
         """Break the loop."""
         print("You Exited!")
         break
 
     else:
-        print("Print Select a valid menu.")
+        print("\nPlease Select a valid MENU ID.")
