@@ -50,6 +50,28 @@ class DatabaseConnection:
             return "New Event created succesffuly"
         except Exception as ex:
             return "Error occured {}".format(ex)
+    
+    def get_all_events(self):
+        """Get all events."""
+        try:
+            query = """
+            SELECT * FROM events
+            """
+            self.cursor.execute(query)
+            return self.cursor.fetchall()
+        except Exception as ex:
+            return "Unable to retrieve all Events - {}".format(ex)
+
+    def get_all_tickets(self):
+        """Get all tickets."""
+        try:
+            query = """
+            SELECT * FROM tickets
+            """
+            self.cursor.execute(query)
+            return self.cursor.fetchall()
+        except Exception as ex:
+            return "Unable to retrieve all Tickets - {}".format(ex)
 
     def search_data(self, table, field, data):
         """Search data from the provided table."""
